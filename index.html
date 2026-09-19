@@ -38,10 +38,14 @@
       background-color: #f8fafc;
       overflow-x: hidden;
       line-height: 1.6;
+      overflow-wrap: break-word;
+      word-break: break-word;
     }
 
     .khmer-font {
       font-family: 'Kantumruy Pro', sans-serif;
+      overflow-wrap: break-word;
+      word-break: break-word;
     }
 
     /* Navbar */
@@ -191,6 +195,9 @@
       border: 1px solid var(--border);
       box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.12);
       background: #000;
+      max-width: 420px;
+      margin: 0 auto;
+      width: 100%;
     }
 
     .hero-portrait-card img {
@@ -404,6 +411,10 @@
         padding: 11px 20px;
         font-size: 0.95rem;
       }
+      .hero-cta-group .btn {
+        width: 100%;
+        justify-content: center;
+      }
     }
   </style>
 </head>
@@ -445,7 +456,7 @@
   <!-- Hero Section -->
   <section class="hero-section">
     <div class="container">
-      <div class="row align-items-center g-5">
+      <div class="row align-items-center g-4 g-lg-5">
         <div class="col-lg-7">
           <div class="status-badge mb-3">
             <span class="status-dot"></span>
@@ -464,7 +475,7 @@
             Specialized in ultra-fast mobile websites, direct Telegram booking workflows, and simple business management systems. I build outcomes that bring you customers, not just lines of code.
           </p>
 
-          <div class="d-flex flex-wrap gap-3 mb-5">
+          <div class="d-flex flex-wrap gap-3 mb-5 hero-cta-group">
             <a href="#projects" class="btn btn-primary-custom btn-lg">
               <i class="bi bi-folder2-open"></i> View My Projects
             </a>
@@ -499,12 +510,12 @@
           <div class="hero-portrait-card">
             <img src="./profile.jpg" alt="Sophireak Web Developer">
             <div class="hero-floating-badge">
-              <div class="d-flex align-items-center justify-content-between">
-                <div>
+              <div class="d-flex align-items-center justify-content-between gap-2">
+                <div style="min-width: 0;">
                   <h6 class="mb-0 fw-bold text-dark">Sophireak</h6>
-                  <small class="text-muted">Independent Web Developer · Battambang</small>
+                  <small class="text-muted d-block" style="font-size: 0.75rem;">Web Developer · Battambang</small>
                 </div>
-                <span class="badge bg-success-subtle text-success fw-bold px-2 py-1">
+                <span class="badge bg-success-subtle text-success fw-bold px-2 py-1 flex-shrink-0">
                   <i class="bi bi-check-circle-fill me-1"></i> Available
                 </span>
               </div>
@@ -829,17 +840,17 @@
   <!-- About Section -->
   <section id="about" class="py-5 bg-light">
     <div class="container py-4">
-      <div class="row align-items-center g-5">
+      <div class="row align-items-center g-4 g-lg-5">
         <div class="col-lg-5">
           <div class="hero-portrait-card" style="box-shadow: 0 20px 40px rgba(15, 23, 42, 0.08);">
             <img src="./profile.jpg" alt="Sophireak Web Developer">
             <div class="hero-floating-badge">
-              <div class="d-flex align-items-center justify-content-between">
-                <div>
+              <div class="d-flex align-items-center justify-content-between gap-2">
+                <div style="min-width: 0;">
                   <h6 class="mb-0 fw-bold text-dark">Sophireak</h6>
-                  <small class="text-muted">Independent Web Developer</small>
+                  <small class="text-muted d-block" style="font-size: 0.75rem;">Web Developer · Battambang</small>
                 </div>
-                <span class="badge bg-primary px-2 py-1 small">Battambang</span>
+                <span class="badge bg-primary px-2 py-1 small flex-shrink-0">Battambang</span>
               </div>
             </div>
           </div>
