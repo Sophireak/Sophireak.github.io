@@ -160,6 +160,7 @@
       background-color: var(--accent-green);
       border-radius: 50%;
       animation: pulse 2s infinite;
+      flex-shrink: 0;
     }
 
     @keyframes pulse {
@@ -327,6 +328,82 @@
       position: relative;
       overflow: hidden;
       box-shadow: 0 25px 50px -15px rgba(15, 23, 42, 0.25);
+    }
+
+    /* Mobile & Responsive Polish */
+    .navbar-toggler:focus {
+      box-shadow: none;
+      outline: none;
+    }
+
+    @media (max-width: 991px) {
+      .navbar-collapse {
+        background: white;
+        padding: 16px 20px;
+        border-radius: 16px;
+        margin-top: 12px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+        border: 1px solid var(--border);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .display-6 {
+        font-size: 1.85rem !important;
+      }
+      .hero-portrait-card img {
+        height: 380px;
+      }
+      .cta-banner {
+        padding: 38px 24px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .hero-title {
+        font-size: 1.85rem !important;
+        letter-spacing: -0.6px;
+        line-height: 1.22;
+      }
+      .display-6 {
+        font-size: 1.6rem !important;
+      }
+      .status-badge {
+        font-size: 0.78rem;
+        padding: 6px 12px;
+        line-height: 1.35;
+        white-space: normal;
+        border-radius: 16px;
+        align-items: flex-start;
+      }
+      .status-dot {
+        margin-top: 5px;
+      }
+      .price-display {
+        font-size: 1.55rem;
+      }
+      .feature-card {
+        padding: 24px 20px;
+      }
+      .project-card {
+        padding: 20px !important;
+      }
+      .hero-portrait-card img {
+        height: 320px;
+      }
+      .hero-floating-badge {
+        left: 12px;
+        right: 12px;
+        bottom: 12px;
+        padding: 10px 14px;
+      }
+      .hero-section {
+        padding: 50px 0 35px;
+      }
+      .btn-primary-custom, .btn-telegram, .btn-outline-custom {
+        padding: 11px 20px;
+        font-size: 0.95rem;
+      }
     }
   </style>
 </head>
