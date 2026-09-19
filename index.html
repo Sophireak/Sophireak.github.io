@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sophireak | Web Developer & Digital Systems for Cambodian Businesses</title>
+  <meta name="description" content="Freelance Web Developer based in Phnom Penh, Cambodia. I build modern, mobile-first business websites, automated Telegram booking systems, and custom web applications.">
+
+  <!-- Google Fonts: Plus Jakarta Sans (English) & Kantumruy Pro (Khmer) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5.3 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-glow: rgba(37, 99, 235, 0.25);
+      --primary-dark: #1d4ed8;
+      --secondary: #0f172a;
+      --surface: #ffffff;
+      --surface-subtle: #f8fafc;
+      --border: #e2e8f0;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --accent-green: #10b981;
+      --accent-telegram: #229ED9;
+      --radius-lg: 20px;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', 'Kantumruy Pro', sans-serif;
+      color: var(--text-main);
+      background-color: #f8fafc;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    .khmer-font {
+      font-family: 'Kantumruy Pro', sans-serif;
+    }
+
+    /* Navbar */
+    .navbar {
+      backdrop-filter: blur(16px);
+      background-color: rgba(255, 255, 255, 0.92);
+      border-bottom: 1px solid var(--border);
+      transition: all 0.3s ease;
+    }
+
+    .navbar-brand {
+      font-weight: 800;
+      color: var(--secondary);
+      letter-spacing: -0.5px;
+      font-size: 1.25rem;
+    }
+
+    .brand-badge {
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, var(--primary), #38bdf8);
+      color: white;
+      border-radius: 10px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+    }
+
+    /* Buttons */
+    .btn-primary-custom {
+      background-color: var(--primary);
+      color: white;
+      font-weight: 700;
+      border-radius: 12px;
+      padding: 12px 24px;
+      border: none;
+      box-shadow: 0 4px 15px var(--primary-glow);
+      transition: all 0.25s ease;
+    }
+
+    .btn-primary-custom:hover {
+      background-color: var(--primary-dark);
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(37, 99, 235, 0.35);
+    }
+
+    .btn-telegram {
+      background-color: var(--accent-telegram);
+      color: white;
+      font-weight: 700;
+      border-radius: 12px;
+      padding: 12px 24px;
+      border: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.25s ease;
+    }
+
+    .btn-telegram:hover {
+      background-color: #1d8fc4;
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(34, 158, 217, 0.35);
+    }
+
+    .btn-outline-custom {
+      background-color: white;
+      color: var(--secondary);
+      font-weight: 700;
+      border-radius: 12px;
+      padding: 12px 24px;
+      border: 1px solid var(--border);
+      transition: all 0.25s ease;
+    }
+
+    .btn-outline-custom:hover {
+      background-color: #f1f5f9;
+      color: var(--secondary);
+      transform: translateY(-2px);
+    }
+
+    /* Hero Section */
+    .hero-section {
+      padding: 90px 0 70px;
+      background: radial-gradient(circle at 80% 20%, #e0f2fe 0%, #f8fafc 60%);
+      position: relative;
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background-color: #ecfdf5;
+      color: #065f46;
+      border: 1px solid #a7f3d0;
+      font-weight: 600;
+      font-size: 0.85rem;
+      padding: 6px 14px;
+      border-radius: 50px;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      background-color: var(--accent-green);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6); }
+      70% { box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+    }
+
+    .hero-title {
+      font-size: 2.85rem;
+      font-weight: 800;
+      letter-spacing: -1.2px;
+      line-height: 1.15;
+      color: var(--secondary);
+    }
+
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 2.15rem;
+      }
+    }
+
+    /* Cards & Containers */
+    .feature-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 32px 28px;
+      transition: all 0.3s ease;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 35px rgba(15, 23, 42, 0.06);
+      border-color: #cbd5e1;
+    }
+
+    .project-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
+    }
+
+    .project-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 25px 45px rgba(15, 23, 42, 0.08);
+      border-color: #93c5fd;
+    }
+
+    .pill-badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: #f1f5f9;
+      color: #475569;
+    }
+
+    .price-display {
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    /* Tech Stack Badges */
+    .tech-pill {
+      background: #f1f5f9;
+      color: var(--secondary);
+      border-radius: 8px;
+      padding: 6px 12px;
+      font-size: 0.825rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* CTA Banner */
+    .cta-banner {
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      color: white;
+      border-radius: 28px;
+      padding: 50px 40px;
+      position: relative;
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="#">
+        <div class="brand-badge">
+          <i class="bi bi-code-slash"></i>
+        </div>
+        <div>
+          <span>Sophireak</span>
+          <span class="text-primary">.dev</span>
+        </div>
+      </a>
+
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarContent">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-3 py-3 py-lg-0">
+          <li class="nav-item"><a class="nav-link fw-semibold" href="#services">Services</a></li>
+          <li class="nav-item"><a class="nav-link fw-semibold" href="#projects">Projects</a></li>
+          <li class="nav-item"><a class="nav-link fw-semibold" href="#why-me">Why Me</a></li>
+          <li class="nav-item"><a class="nav-link fw-semibold" href="#about">About</a></li>
+          <li class="nav-item ms-lg-2">
+            <a href="https://t.me/bNha_dev" target="_blank" class="btn btn-telegram btn-sm">
+              <i class="bi bi-telegram"></i> Let's Talk
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-7">
+          <div class="status-badge mb-3">
+            <span class="status-dot"></span>
+            <span>Available for Freelance Projects in Phnom Penh</span>
+          </div>
+
+          <h1 class="hero-title mb-3">
+            I Build Modern Websites & Systems That Help Cambodian Businesses Grow.
+          </h1>
+
+          <p class="khmer-font text-primary fw-bold mb-3 fs-5">
+            គេហទំព័រទំនើប និងប្រព័ន្ធគ្រប់គ្រងស្វ័យប្រវត្តសម្រាប់អាជីវកម្មនៅកម្ពុជា
+          </p>
+
+          <p class="text-muted fs-5 mb-4">
+            Specialized in ultra-fast mobile websites, direct Telegram booking workflows, and simple business management systems. I build outcomes that bring you customers, not just lines of code.
+          </p>
+
+          <div class="d-flex flex-wrap gap-3 mb-5">
+            <a href="#projects" class="btn btn-primary-custom btn-lg">
+              <i class="bi bi-folder2-open me-2"></i> View My Projects
+            </a>
+            <a href="https://t.me/bNha_dev" target="_blank" class="btn btn-telegram btn-lg">
+              <i class="bi bi-telegram"></i> Message on Telegram
+            </a>
+          </div>
+
+          <!-- Trust Counters -->
+          <div class="row g-3 pt-3 border-top">
+            <div class="col-6 col-sm-3">
+              <div class="fw-bold fs-4 text-dark">100%</div>
+              <div class="text-muted small">Mobile First</div>
+            </div>
+            <div class="col-6 col-sm-3">
+              <div class="fw-bold fs-4 text-primary">0s</div>
+              <div class="text-muted small">Telegram Alerts</div>
+            </div>
+            <div class="col-6 col-sm-3">
+              <div class="fw-bold fs-4 text-success">$0 /mo</div>
+              <div class="text-muted small">Server Fees Setup</div>
+            </div>
+            <div class="col-6 col-sm-3">
+              <div class="fw-bold fs-4 text-dark">48h</div>
+              <div class="text-muted small">Fast Turnaround</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-5">
+          <!-- Live Project Teaser Card -->
+          <div class="project-card p-3 p-md-4" style="background: linear-gradient(180deg, #ffffff 0%, #f0f9ff 100%);">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <span class="badge bg-success-subtle text-success fw-bold px-2 py-1">
+                <i class="bi bi-check-circle-fill me-1"></i> Live Production Demo
+              </span>
+              <span class="text-muted small">Project #1</span>
+            </div>
+
+            <div class="text-center rounded-4 overflow-hidden border shadow-sm mb-3" style="background: #ffffff;">
+              <img src="https://raw.githubusercontent.com/Sophireak/smile-dental-phnompenh/main/demo.gif" alt="Smile Dental Studio Live Demo" class="img-fluid" style="max-height: 380px; width: auto; object-fit: contain;">
+            </div>
+
+            <h5 class="fw-bold mb-1">Smile Dental Studio Phnom Penh</h5>
+            <p class="text-muted small mb-3">Mobile clinic landing page with upfront pricing & silent Telegram Bot notifications.</p>
+
+            <div class="d-flex gap-2">
+              <a href="https://smile-dental-phnompenh.vercel.app/" target="_blank" class="btn btn-primary-custom btn-sm flex-grow-1">
+                <i class="bi bi-box-arrow-up-right me-1"></i> Test Live Demo
+              </a>
+              <a href="https://github.com/Sophireak/smile-dental-phnompenh" target="_blank" class="btn btn-outline-custom btn-sm">
+                <i class="bi bi-github"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services & Starting Prices -->
+  <section id="services" class="py-5 bg-white border-top border-bottom">
+    <div class="container py-4">
+      <div class="text-center max-w-700 mx-auto mb-5">
+        <span class="text-primary fw-bold text-uppercase small tracking-wide">What I Can Build For You</span>
+        <h2 class="fw-bold display-6 mt-1 mb-2">Services & Transparent Packages</h2>
+        <p class="text-muted">Clear scope, transparent pricing, and zero hidden recurring platform fees.</p>
+      </div>
+
+      <div class="row g-4">
+        <!-- Service 1 -->
+        <div class="col-lg-4 col-md-6">
+          <div class="feature-card">
+            <div>
+              <div class="brand-badge mb-3" style="background: #e0f2fe; color: #0284c7;">
+                <i class="bi bi-laptop"></i>
+              </div>
+              <span class="pill-badge mb-2">Package 01</span>
+              <h4 class="fw-bold mb-2">Business Landing Page</h4>
+              <p class="text-muted small mb-4">A fast, professional website designed to showcase your services, transparent pricing, and direct contacts.</p>
+
+              <ul class="list-unstyled small text-muted d-flex flex-column gap-2 mb-4">
+                <li><i class="bi bi-check-lg text-success me-2"></i> 3–5 High-speed mobile-first pages</li>
+                <li><i class="bi bi-check-lg text-success me-2"></i> Upfront pricing menu / service catalog</li>
+                <li><i class="bi bi-check-lg text-success me-2"></i> One-click Phone & Telegram buttons</li>
+                <li><i class="bi bi-check-lg text-success me-2"></i> Google Maps & local SEO setup</li>
+                <li><i class="bi bi-check-lg text-success me-2"></i> Free cloud deployment ($0 server cost)</li>
+              </ul>
+            </div>
+
+            <div>
+              <div class="border-top pt-3 mb-3 d-flex justify-content-between align-items-center">
+                <span class="text-muted small">Starting Price</span>
+                <span class="price-display">$100 – $150</span>
+              </div>
+              <a href="https://t.me/bNha_dev?text=Hi%20Sophireak,%20I'm%20interested%20in%20the%20Business%20Landing%20Page%20package." target="_blank" class="btn btn-outline-custom w-100">
+                Inquire via Telegram
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Service 2 (Featured) -->
+        <div class="col-lg-4 col-md-6">
+          <div class="feature-card border-primary" style="box-shadow: 0 15px 35px rgba(37, 99, 235, 0.1);">
+            <div>
+              <div class="brand-badge mb-3" style="background: #dbeafe; color: #2563eb;">
+                <i class="bi bi-calendar-check"></i>
+              </div>
+              <span class="badge bg-primary mb-2">Most Requested</span>
+              <h4 class="fw-bold mb-2">Booking & Appointment System</h4>
+              <p class="text-muted small mb-4">Allow your customers to choose their service and time slot with instant notifications sent to your staff Telegram group.</p>
+
+              <ul class="list-unstyled small text-muted d-flex flex-column gap-2 mb-4">
+                <li><i class="bi bi-check-lg text-success me-2"></i> Interactive self-service booking flow</li>
+                <li><i class="bi bi-check-lg text-success me-2"></i> Instant silent Telegram alerts for staff</li>
+                <li><i class="bi bi-check-lg text-success me-2"></i> Customer confirmation screen & receipts</li>
+                <li><i class="bi bi-check-lg text-success me-2"></i> Zero missed leads from Facebook inbox</li>
+                <li><i class="bi bi-check-lg text-success me-2"></i> 48-hour delivery timeline</li>
+              </ul>
+            </div>
+
+            <div>
+              <div class="border-top pt-3 mb-3 d-flex justify-content-between align-items-center">
+                <span class="text-muted small">Starting Price</span>
+                <span class="price-display">$180 – $280</span>
+              </div>
+              <a href="https://t.me/bNha_dev?text=Hi%20Sophireak,%20I'm%20interested%20in%20the%20Booking%20System%20package." target="_blank" class="btn btn-primary-custom w-100">
+                Inquire via Telegram
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Service 3 -->
+        <div class="col-lg-4 col-md-6">
+          <div class="feature-card">
+            <div>
+              <div class="brand-badge mb-3" style="background: #fef3c7; color: #b45309;">
+                <i class="bi bi-boxes"></i>
+              </div>
+              <span class="pill-badge mb-2">Package 03</span>
+              <h4 class="fw-bold mb-2">Custom Business System</h4>
+              <p class="text-muted small mb-4">Simple, tailored web applications to track inventory, sales, and internal workflows for shops and warehouses.</p>
+
+              <ul class="list-unstyled small text-muted d-flex flex-column gap-2 mb-4">
+                <li><i class="bi bi-check-lg text-success me-2"></i> Product catalog & inventory tracking</li>
+                <li><i class="bi bi-check-lg text-success me-2"></i> Stock in/out & low-stock warnings</li>
+                <li><i class="bi bi-check-lg text-success me-2"></i> Daily & monthly sales summaries</li>
+                <li><i class="bi bi-check-lg text-success me-2"></i> Secure admin & staff logins</li>
+                <li><i class="bi bi-check-lg text-success me-2"></i> Full database backup & maintenance</li>
+              </ul>
+            </div>
+
+            <div>
+              <div class="border-top pt-3 mb-3 d-flex justify-content-between align-items-center">
+                <span class="text-muted small">Starting Price</span>
+                <span class="price-display">From $300</span>
+              </div>
+              <a href="https://t.me/bNha_dev?text=Hi%20Sophireak,%20I'm%20interested%20in%20the%20Custom%20Business%20System%20package." target="_blank" class="btn btn-outline-custom w-100">
+                Inquire via Telegram
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Projects Showcase -->
+  <section id="projects" class="py-5 bg-light">
+    <div class="container py-4">
+      <div class="text-center max-w-700 mx-auto mb-5">
+        <span class="text-primary fw-bold text-uppercase small tracking-wide">Portfolio Showcase</span>
+        <h2 class="fw-bold display-6 mt-1 mb-2">Real Business Solutions</h2>
+        <p class="text-muted">Live projects built to solve genuine operational problems for local businesses.</p>
+      </div>
+
+      <div class="row g-4">
+        <!-- Project 1 (Completed & Live) -->
+        <div class="col-lg-12">
+          <div class="project-card p-4 p-lg-5">
+            <div class="row align-items-center g-5">
+              <div class="col-lg-6">
+                <div class="d-flex align-items-center gap-2 mb-3">
+                  <span class="badge bg-success px-3 py-2 fw-bold">Live Production</span>
+                  <span class="pill-badge">Project 01</span>
+                </div>
+
+                <h3 class="fw-bold mb-3">Smile Dental Studio — Phnom Penh</h3>
+                <p class="text-muted mb-4">
+                  A modern, mobile-first clinic web application designed to solve patient price hesitation. Features upfront pricing and a secure serverless backend that instantly alerts the clinic staff group on Telegram whenever an appointment is requested.
+                </p>
+
+                <!-- Tech Badges -->
+                <div class="d-flex flex-wrap gap-2 mb-4">
+                  <span class="tech-pill"><i class="bi bi-code"></i> HTML5 & CSS3</span>
+                  <span class="tech-pill"><i class="bi bi-bootstrap"></i> Bootstrap 5.3</span>
+                  <span class="tech-pill"><i class="bi bi-server"></i> Node.js Serverless</span>
+                  <span class="tech-pill"><i class="bi bi-telegram text-info"></i> Telegram Bot API</span>
+                  <span class="tech-pill"><i class="bi bi-cloud-check text-success"></i> Vercel Edge</span>
+                </div>
+
+                <div class="d-flex flex-wrap gap-3">
+                  <a href="https://smile-dental-phnompenh.vercel.app/" target="_blank" class="btn btn-primary-custom">
+                    <i class="bi bi-box-arrow-up-right me-2"></i> Visit Live Demo
+                  </a>
+                  <a href="https://github.com/Sophireak/smile-dental-phnompenh" target="_blank" class="btn btn-outline-custom">
+                    <i class="bi bi-github me-2"></i> View Code on GitHub
+                  </a>
+                </div>
+              </div>
+
+              <div class="col-lg-6 text-center">
+                <div class="rounded-4 overflow-hidden border shadow-sm p-2 bg-white d-inline-block">
+                  <img src="https://raw.githubusercontent.com/Sophireak/smile-dental-phnompenh/main/demo.gif" alt="Smile Dental Studio Demo" class="img-fluid rounded-3" style="max-height: 480px;">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 2 (In Development) -->
+        <div class="col-lg-6">
+          <div class="project-card p-4 h-100 d-flex flex-column justify-content-between">
+            <div>
+              <div class="d-flex align-items-center gap-2 mb-3">
+                <span class="badge bg-warning-subtle text-warning-emphasis px-3 py-2 fw-bold">In Development</span>
+                <span class="pill-badge">Project 02</span>
+              </div>
+              <h4 class="fw-bold mb-2">Aura Booking & Scheduling Engine</h4>
+              <p class="text-muted small mb-4">
+                Full-stack multi-slot appointment web application with customer self-booking and a protected staff admin portal to approve, reschedule, or cancel bookings in real-time.
+              </p>
+              <div class="d-flex flex-wrap gap-2 mb-4">
+                <span class="tech-pill">Laravel</span>
+                <span class="tech-pill">PHP</span>
+                <span class="tech-pill">MySQL</span>
+                <span class="tech-pill">Admin Dashboard</span>
+              </div>
+            </div>
+            <div>
+              <button class="btn btn-light border text-muted w-100 fw-bold" disabled>
+                <i class="bi bi-hourglass-split me-1"></i> Under Active Development
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 3 (Roadmap) -->
+        <div class="col-lg-6">
+          <div class="project-card p-4 h-100 d-flex flex-column justify-content-between">
+            <div>
+              <div class="d-flex align-items-center gap-2 mb-3">
+                <span class="badge bg-secondary-subtle text-secondary px-3 py-2 fw-bold">Upcoming</span>
+                <span class="pill-badge">Project 03</span>
+              </div>
+              <h4 class="fw-bold mb-2">ShopTrack — Small Business Inventory</h4>
+              <p class="text-muted small mb-4">
+                Lightweight retail management database application for Cambodian shops. Real-time stock movement, low-stock warnings, and KHQR scan-to-pay workflow.
+              </p>
+              <div class="d-flex flex-wrap gap-2 mb-4">
+                <span class="tech-pill">Laravel</span>
+                <span class="tech-pill">MySQL</span>
+                <span class="tech-pill">KHQR / Bakong</span>
+                <span class="tech-pill">Reporting</span>
+              </div>
+            </div>
+            <div>
+              <button class="btn btn-light border text-muted w-100 fw-bold" disabled>
+                <i class="bi bi-clock-history me-1"></i> Coming Soon
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Work With Me -->
+  <section id="why-me" class="py-5 bg-white border-top border-bottom">
+    <div class="container py-4">
+      <div class="text-center max-w-700 mx-auto mb-5">
+        <span class="text-primary fw-bold text-uppercase small tracking-wide">The Value I Deliver</span>
+        <h2 class="fw-bold display-6 mt-1 mb-2">Why Local Businesses Choose to Work With Me</h2>
+        <p class="text-muted">I focus on solving real operational headaches for business owners.</p>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-3">
+          <div class="p-4 bg-light rounded-4 border h-100">
+            <div class="brand-badge mb-3">
+              <i class="bi bi-phone"></i>
+            </div>
+            <h5 class="fw-bold mb-2">100% Mobile First</h5>
+            <p class="text-muted small mb-0">90%+ of your Cambodian customers browse on phones. Every design is tested on real smartphones to ensure instant loading on 4G networks.</p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+          <div class="p-4 bg-light rounded-4 border h-100">
+            <div class="brand-badge mb-3" style="background: #229ED9;">
+              <i class="bi bi-telegram"></i>
+            </div>
+            <h5 class="fw-bold mb-2">Telegram Workflows</h5>
+            <p class="text-muted small mb-0">No useless emails that sit unread for days. Inquiries ping your staff directly in Telegram groups where you already do business.</p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+          <div class="p-4 bg-light rounded-4 border h-100">
+            <div class="brand-badge mb-3" style="background: #10b981;">
+              <i class="bi bi-shield-check"></i>
+            </div>
+            <h5 class="fw-bold mb-2">Zero Hidden Fees</h5>
+            <p class="text-muted small mb-0">I configure modern serverless cloud setups (Vercel / GitHub Pages) so you do not have to pay $20–$50 every month in unnecessary hosting bills.</p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+          <div class="p-4 bg-light rounded-4 border h-100">
+            <div class="brand-badge mb-3" style="background: #8b5cf6;">
+              <i class="bi bi-speedometer2"></i>
+            </div>
+            <h5 class="fw-bold mb-2">48-Hour Delivery</h5>
+            <p class="text-muted small mb-0">Fast, reliable turnaround with continuous progress updates. Your business website is live and working in days, not months.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="py-5 bg-light">
+    <div class="container py-4">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-5">
+          <div class="bg-white p-4 p-md-5 rounded-4 border shadow-sm text-center">
+            <div class="mb-3 d-inline-flex align-items-center justify-content-center bg-primary-subtle text-primary rounded-circle" style="width: 90px; height: 90px; font-size: 2.75rem;">
+              <i class="bi bi-person-fill"></i>
+            </div>
+            <h4 class="fw-bold mb-1">Sophireak</h4>
+            <p class="text-primary fw-semibold small mb-3">Web Developer · Phnom Penh, Cambodia</p>
+            <p class="text-muted small mb-4">
+              Passionate about helping Cambodian businesses modernize their digital presence through clean code, fast loading speeds, and practical automation.
+            </p>
+            <div class="d-flex justify-content-center gap-2">
+              <a href="https://github.com/Sophireak" target="_blank" class="btn btn-outline-custom btn-sm">
+                <i class="bi bi-github me-1"></i> GitHub
+              </a>
+              <a href="https://t.me/bNha_dev" target="_blank" class="btn btn-telegram btn-sm">
+                <i class="bi bi-telegram me-1"></i> Telegram
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-7">
+          <span class="text-primary fw-bold text-uppercase small tracking-wide">Developer Profile</span>
+          <h2 class="fw-bold display-6 mt-1 mb-3">“Code should solve business problems, not create complications.”</h2>
+          <p class="text-muted fs-5 mb-4">
+            I don't just build pretty pages—I build systems that save business owners time and bring in qualified customer leads. Whether you run a medical clinic, a training center, or a local service shop, I ensure your web presence is fast, reliable, and connected to your team.
+          </p>
+
+          <h6 class="fw-bold mb-3">Core Technical Skills:</h6>
+          <div class="d-flex flex-wrap gap-2">
+            <span class="tech-pill"><i class="bi bi-check-circle-fill text-primary"></i> HTML5 & CSS3</span>
+            <span class="tech-pill"><i class="bi bi-check-circle-fill text-primary"></i> JavaScript (ES6+)</span>
+            <span class="tech-pill"><i class="bi bi-check-circle-fill text-primary"></i> PHP & Laravel</span>
+            <span class="tech-pill"><i class="bi bi-check-circle-fill text-primary"></i> MySQL Database</span>
+            <span class="tech-pill"><i class="bi bi-check-circle-fill text-primary"></i> Telegram Bot API</span>
+            <span class="tech-pill"><i class="bi bi-check-circle-fill text-primary"></i> Bootstrap 5.3</span>
+            <span class="tech-pill"><i class="bi bi-check-circle-fill text-primary"></i> Serverless Edge (Vercel)</span>
+            <span class="tech-pill"><i class="bi bi-check-circle-fill text-primary"></i> Git & GitHub</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Banner Section -->
+  <section class="py-5 bg-white border-top">
+    <div class="container py-4">
+      <div class="cta-banner">
+        <div class="row align-items-center g-4">
+          <div class="col-lg-8">
+            <h2 class="fw-bold display-6 mb-2">Have a project in mind for your business?</h2>
+            <p class="text-light opacity-75 fs-5 mb-0">
+              Let's chat on Telegram. Send me your ideas or questions, and I'll give you a free technical consultation and estimated timeline.
+            </p>
+          </div>
+          <div class="col-lg-4 text-lg-end">
+            <a href="https://t.me/bNha_dev" target="_blank" class="btn btn-telegram btn-lg px-4 py-3">
+              <i class="bi bi-telegram fs-5"></i> Chat on Telegram
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-white py-5">
+    <div class="container">
+      <div class="row g-4 justify-content-between">
+        <div class="col-lg-5">
+          <div class="d-flex align-items-center gap-2 mb-3">
+            <div class="brand-badge">
+              <i class="bi bi-code-slash"></i>
+            </div>
+            <h5 class="fw-bold mb-0 text-white">Sophireak<span class="text-primary">.dev</span></h5>
+          </div>
+          <p class="text-secondary small mb-3">
+            Web Developer & Digital Systems Specialist for Cambodian small and medium businesses.
+          </p>
+          <div class="text-secondary small">
+            © 2026 Sophireak. All rights reserved. Built with pride in Phnom Penh, Cambodia.
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+          <h6 class="fw-bold text-white mb-3">Quick Navigation</h6>
+          <ul class="list-unstyled text-secondary small d-flex flex-column gap-2">
+            <li><a href="#services" class="text-secondary text-decoration-none">Services & Pricing</a></li>
+            <li><a href="#projects" class="text-secondary text-decoration-none">Featured Projects</a></li>
+            <li><a href="#why-me" class="text-secondary text-decoration-none">Why Work With Me</a></li>
+            <li><a href="#about" class="text-secondary text-decoration-none">About Developer</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-4 col-md-6">
+          <h6 class="fw-bold text-white mb-3">Direct Contact</h6>
+          <p class="text-secondary small mb-1"><i class="bi bi-telegram text-info me-2"></i> @bNha_dev (Telegram)</p>
+          <p class="text-secondary small mb-1"><i class="bi bi-envelope text-primary me-2"></i> reak36@gmail.com</p>
+          <p class="text-secondary small mb-1"><i class="bi bi-github text-light me-2"></i> github.com/Sophireak</p>
+          <p class="text-secondary small"><i class="bi bi-geo-alt text-danger me-2"></i> Phnom Penh, Cambodia</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap Bundle JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
